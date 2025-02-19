@@ -35,7 +35,6 @@ export default function InstanceAnalytics() {
     }
   }, []);
 
-  // Dynamically import the date adapter and set a flag when loaded.
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('chartjs-adapter-date-fns')
