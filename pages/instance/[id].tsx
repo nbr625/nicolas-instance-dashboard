@@ -29,7 +29,6 @@ export default function InstanceAnalytics() {
   const [diskStats, setDiskStats] = useState<{ used: number; free: number } | null>(null);
   const [adapterLoaded, setAdapterLoaded] = useState(false);
 
-  // Register Chart.js components on the client.
   useEffect(() => {
     if (typeof window !== 'undefined') {
       Chart.register(...registerables);
@@ -97,7 +96,6 @@ export default function InstanceAnalytics() {
     };
   }, [router.isReady, id]);
 
-  // Chart options: disable maintainAspectRatio so charts fill their container.
   const chartOptions = {
     maintainAspectRatio: false,
     scales: {
@@ -117,7 +115,6 @@ export default function InstanceAnalytics() {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
   };
 
-  // If the adapter isn’t loaded yet, show a loading state.
   if (!adapterLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 font-sans">
@@ -158,7 +155,6 @@ export default function InstanceAnalytics() {
             </div>
           </motion.div>
 
-          {/* GPU Chart */}
           <motion.div variants={cardVariants} className="bg-white shadow-lg rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">GPU Usage (%)</h2>
             <div className="h-72 relative">
@@ -178,7 +174,6 @@ export default function InstanceAnalytics() {
             </div>
           </motion.div>
 
-          {/* Memory Chart */}
           <motion.div variants={cardVariants} className="bg-white shadow-lg rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">Memory Usage (GB)</h2>
             <div className="h-72 relative">
@@ -198,7 +193,6 @@ export default function InstanceAnalytics() {
             </div>
           </motion.div>
 
-          {/* Disk Pie Chart */}
           <motion.div variants={cardVariants} className="bg-white shadow-lg rounded-lg p-6">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">Disk Usage (TB)</h2>
             <div className="h-72 relative flex items-center justify-center">
@@ -226,7 +220,6 @@ export default function InstanceAnalytics() {
   );
 }
 
-// Disable SSR for this page.
 export const config = {
   ssr: false,
 };
